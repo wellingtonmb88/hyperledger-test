@@ -1,0 +1,59 @@
+--- # ---------------------------------------------------------------------------
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# ---------------------------------------------------------------------------
+# "OrdererOrgs" - Definition of organizations managing orderer nodes
+OrdererOrgs:
+  # ---------------------------------------------------------------------------
+  # Orderer
+  # ---------------------------------------------------------------------------
+  - Name: Orderer
+    Domain: notary.com
+    # ---------------------------------------------------------------------------
+    # "Specs" - See PeerOrgs below for complete description
+    # ---------------------------------------------------------------------------
+    Specs:
+      - Hostname: orderer
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  # ---------------------------------------------------------------------------
+  # Org1
+  # ---------------------------------------------------------------------------
+  - Name: Notary
+    Domain: notary.com
+    # ---------------------------------------------------------------------------
+    # "Specs"
+    # ---------------------------------------------------------------------------
+    # Uncomment this section to enable the explicit definition of hosts in your
+    # configuration.  Most users will want to use Template, below
+    Specs:
+      - Hostname: peer1.notary.com # implicitly "foo.org1.example.com"
+        CommonName: peer1.notary.com # overrides Hostname-based FQDN set above
+      - Hostname: peer2.notary.com # implicitly "foo.org1.example.com"
+        CommonName: peer2.notary.com # overrides Hostname-based FQDN set above
+    Users:
+      Count: 0
+
+  # ---------------------------------------------------------------------------
+  # Org2
+  # ---------------------------------------------------------------------------
+  - Name: Observer
+    Domain: observer.com
+    # ---------------------------------------------------------------------------
+    # "Specs"
+    # ---------------------------------------------------------------------------
+    # Uncomment this section to enable the explicit definition of hosts in your
+    # configuration.  Most users will want to use Template, below
+    Specs:
+      - Hostname: peer1.observer.com # implicitly "foo.org1.example.com"
+        CommonName: peer1.observer.com # overrides Hostname-based FQDN set above
+      - Hostname: peer2.observer.com # implicitly "foo.org1.example.com"
+        CommonName: peer2.observer.com # overrides Hostname-based FQDN set above
+    Users:
+      Count: 0

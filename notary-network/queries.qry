@@ -1,0 +1,21 @@
+//**
+//Noatry Queries
+//**
+
+query findNotaryByName{
+    description: "Select Notary by name."
+    statement:
+        SELECT org.notary.network.notary.Notary
+          WHERE (name == _$name)
+}
+
+//**
+//Observer Queries
+//**
+
+query findObserverByName{
+    description: "Select Observer by name."
+    statement:
+        SELECT org.notary.network.observer.Observer
+          WHERE (name == _$name)
+}

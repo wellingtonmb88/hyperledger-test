@@ -1,0 +1,64 @@
+
+namespace  org.notary.network.observer
+
+participant Observer identified by id {
+    o String id
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+abstract concept Response {
+  o Integer statusCode default=200
+}
+
+concept ResponseSuccess extends Response {
+  o String message default="success"
+}
+
+concept ResponseFailure extends Response {
+  o String errorMessage
+}
+
+event InactivateObserverEvent {
+  --> Observer observer
+}
+
+@returns(Response)
+transaction InactivateObserver {
+    o String id
+}
+
+
+event CreateObserverEvent {
+  o Observer observer
+}
+
+@returns(Response)
+transaction CreateObserver {
+    o String id
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+event UpdateObserverEvent {
+  o Observer observer
+}
+
+@returns(Response)
+transaction UpdateObserver {
+    o String id
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+event RemoveObserverEvent {
+  o Observer observer
+}
+
+@returns(Response)
+transaction RemoveObserver {
+    o String id
+}

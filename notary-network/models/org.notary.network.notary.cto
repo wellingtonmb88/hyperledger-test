@@ -1,0 +1,64 @@
+
+namespace  org.notary.network.notary
+
+participant Notary identified by cns {
+    o String cns
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+abstract concept Response {
+  o Integer statusCode default=200
+}
+
+concept ResponseSuccess extends Response {
+  o String message default="success"
+}
+
+concept ResponseFailure extends Response {
+  o String errorMessage
+}
+
+event InactivateNotaryEvent {
+  --> Notary notary
+}
+
+@returns(Response)
+transaction InactivateNotary {
+    o String cns
+}
+
+
+event CreateNotaryEvent {
+  o Notary notary
+}
+
+@returns(Response)
+transaction CreateNotary {
+    o String cns
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+event UpdateNotaryEvent {
+  o Notary notary
+}
+
+@returns(Response)
+transaction UpdateNotary {
+    o String cns
+    o String name
+  	o DateTime date
+  	o Boolean active default=true
+}
+
+event RemoveNotaryEvent {
+  o Notary notary
+}
+
+@returns(Response)
+transaction RemoveNotary {
+    o String cns
+}

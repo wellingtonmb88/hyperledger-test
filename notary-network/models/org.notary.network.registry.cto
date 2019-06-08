@@ -1,0 +1,118 @@
+
+namespace  org.notary.network.registry
+
+asset Registry identified by id {
+    o String id
+    o String cns
+    o String[] lista_cns_permitida
+    o String specialidade
+    o String  livro
+    o Integer numero_registro
+    o DateTime data_registro
+    o Integer protocolo
+    o String natureza
+    o String subnatureza
+    o Boolean guarda_conservacao
+    o Boolean sigilo_legal
+    o Act[] atos
+    o Object[] objetos
+}
+
+concept Act  {
+    o String ato_praticado
+    o String tipo_ato
+    o Boolean conteudo_financeiro
+    o Double valor_contrato
+    o Part[] partes
+    o Service[] servicos
+    o Stamp[] selos
+}
+
+concept Part  {
+    o String nome
+    o String tipo_documento
+    o String documento
+    o String qualificacao
+}
+
+concept Service  {
+    o String nome
+    o Double valor_base
+    o String forma_calculo
+    o Cost[] custos
+}
+
+concept Cost  {
+    o String coluna
+    o Double valor
+}
+
+concept Stamp  {
+    o Integer numero
+}
+
+concept Object  {
+    o String nome
+    o Attribute[] atributos
+}
+
+concept Attribute  {
+    o String chave
+    o String valor
+}
+
+abstract concept Response {
+  o Integer statusCode default=200
+}
+
+concept ResponseSuccess extends Response {
+  o String message default="success"
+}
+
+concept ResponseFailure extends Response {
+  o String errorMessage
+}
+
+event CreateRegistryEvent {
+  o Registry registry
+}
+
+@returns(Response)
+transaction CreateRegistry {
+    o String id
+    o String cns
+    o String[] lista_cns_permitida
+    o String specialidade
+    o String  livro
+    o Integer numero_registro
+    o DateTime data_registro
+    o Integer protocolo
+    o String natureza
+    o String subnatureza
+    o Boolean guarda_conservacao
+    o Boolean sigilo_legal
+    o Act[] atos
+    o Object[] objetos
+}
+
+event UpdateRegistryEvent {
+  o Registry registry
+}
+
+@returns(Response)
+transaction UpdateRegistry {
+    o String id
+    o String cns
+    o String[] lista_cns_permitida
+    o String specialidade
+    o String  livro
+    o Integer numero_registro
+    o DateTime data_registro
+    o Integer protocolo
+    o String natureza
+    o String subnatureza
+    o Boolean guarda_conservacao
+    o Boolean sigilo_legal
+    o Act[] atos
+    o Object[] objetos
+}

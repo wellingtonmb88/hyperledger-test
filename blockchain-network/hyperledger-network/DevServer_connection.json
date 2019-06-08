@@ -1,0 +1,56 @@
+{
+    "name": "notary-network",
+    "x-type": "hlfv1",
+    "x-commitTimeout": 300,
+    "version": "1.0.0",
+    "client": {
+        "organization": "NotaryMSP",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300",
+                    "eventHub": "300",
+                    "eventReg": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "notarychannel": {
+            "orderers": [
+                "orderer.notary.com"
+            ],
+            "peers": {
+				"peer1.notary.com": {}
+            }
+        }
+    },
+    "organizations": {
+        "NotaryMSP": {
+            "mspid": "NotaryMSP",
+            "peers": [
+                "peer1.notary.com"
+            ],
+            "certificateAuthorities": [
+                "ca.notary.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.notary.com": {
+            "url": "grpc://localhost:7050"
+        }
+    },
+    "peers": {
+        "peer1.notary.com": {
+            "url": "grpc://localhost:7051"
+        }
+    },
+    "certificateAuthorities": {
+        "ca.notary.com": {
+            "url": "http://localhost:7054",
+            "caName": "ca.notary.com"
+        }
+    }
+}
